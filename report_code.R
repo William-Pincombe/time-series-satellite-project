@@ -160,7 +160,7 @@ p3 <- plot_predictions(base_cryosat2_bmm) +
        title = "Brouwer Mean Motion")
 p <- p1 / p2 / p3 & theme(legend.position = "bottom")
 p + plot_layout(guides = "collect")
-ggsave("figs/baseline_bmm_cryosat2_predictions.png")
+ggsave("figs/baseline_bmm_cryosat2_predictions.png", width = 7.7, height = 6.66)
 
 
 ### Fengyun 2D ###
@@ -304,6 +304,22 @@ get_metrics(arima_cryosat2_bmm)
 plot_pr_curve(arima_cryosat2_bmm) # okay
 plot_roc_curve(arima_cryosat2_bmm)
 
+# Plot predictions of one of the methods
+p1 <- plot_predictions(arima_cryosat2_ecc) + 
+  labs(y = "Difference",
+       title = "Eccentricity")
+p2 <- plot_predictions(arima_cryosat2_aop) + 
+  labs(y = "Difference",
+       title = "Argument of Perigee")
+p3 <- plot_predictions(arima_cryosat2_bmm) + 
+  labs(y = "Difference",
+       title = "Brouwer Mean Motion")
+p <- p1 / p2 / p3 & theme(legend.position = "bottom")
+p + plot_layout(guides = "collect")
+ggsave("figs/arima_cryosat2_predictions.png", width = 7.7, height = 6.66)
+
+
+
 
 ### Fengyun 2D ###
 
@@ -401,6 +417,20 @@ if_cryosat2_bmm <- evaluate_moving_window(if_cryosat2_bmm, d = 1)
 get_metrics(if_cryosat2_bmm)
 plot_pr_curve(if_cryosat2_bmm) # there is a sort-of better threshold
 plot_roc_curve(if_cryosat2_bmm)
+
+# Plot predictions of one of the methods
+p1 <- plot_predictions(if_cryosat2_ecc) + 
+  labs(y = "Difference",
+       title = "Eccentricity")
+p2 <- plot_predictions(if_cryosat2_aop) + 
+  labs(y = "Difference",
+       title = "Argument of Perigee")
+p3 <- plot_predictions(if_cryosat2_bmm) + 
+  labs(y = "Difference",
+       title = "Brouwer Mean Motion")
+p <- p1 / p2 / p3 & theme(legend.position = "bottom")
+p + plot_layout(guides = "collect")
+ggsave("figs/if_cryosat2_predictions.png", width = 7.7, height = 6.66)
 
 
 ### Fengyun 2D ###
